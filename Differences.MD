@@ -274,9 +274,3 @@ Each program is described using the same structure:
 
 ---
 
-## How to use this
-
-- If you want **fast experiments**, start from a DistilBERT program with a small dataset (e.g., `5_sms_spam_binary` or `2_ag_news_topic`).
-- If you want **higher accuracy** and have more compute, start from a BERT or RoBERTa program with more data (e.g., `1_imdb_binary`, `3_amazon_polarity`, or `9_yahoo_answers_10class`).
-- If you want to experiment with **many classes**, use `8_dbpedia_14class` or `9_yahoo_answers_10class`.
-- If you want a **simple binary sentiment baseline**, use `1_imdb_binary` or `7_sst2_binary`.
