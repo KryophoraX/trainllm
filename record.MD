@@ -20,3 +20,38 @@ Longer input length: Changed max_length from 128 → 256.
 Final testing: Added a separate evaluation on unseen test data.
 Fixed scheduler steps: Adjusted the scheduler to work correctly with gradient accumulation.
 Removed unnecessary import: Removed from sched import scheduler.
+
+test 10 : Training Accuracy: 80.40%
+test 9: 
+99.65%
+test 8:
+Validation Loss: 0.0877
+Validation Accuracy: 98.60%'
+test 7:Test Accuracy: 90.17%
+test 6:Training Accuracy: 99.83%
+Validation Loss: 0.0713
+Validation Accuracy: 98.33%
+Test 6:FINAL TEST RESULTS
+==================================================
+Test Loss: 0.2600
+Test Accuracy: 89.50%
+test 5:
+==================================================
+FINAL TEST RESULTS
+==================================================
+Test Loss: 0.2554
+Test Accuracy: 90.50%
+test 4:
+FINAL TEST RESULTS
+==================================================
+Test Loss: 0.1324
+Test Accuracy: 95.20%
+test 3:
+FINAL TEST RESULTS
+==================================================
+Test Loss: 0.3019
+Test Accuracy: 90.90%
+test 2: FINAL TEST RESULTS
+==================================================
+Test Loss: 0.3162
+Test Accuracy: 90.10%

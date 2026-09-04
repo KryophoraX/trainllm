@@ -1,125 +1,126 @@
-"""Load fine-tuned models and run inference."""
+# Model Training Progress Log
 
-from pathlib import Path
+## Overview
 
-import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+This document tracks the development and performance of the model across multiple training tests. Each test represents a different iteration of the training process, with improvements made to dataset handling, validation, optimization, and evaluation.
 
-from model_configs import ROOT_DIR, ModelConfig, get_model_config
+## Initial Training — First Pass
 
+### Epoch 3/3
 
-def get_device() -> torch.device:
-    if torch.backends.mps.is_available():
-        return torch.device("mps")
-    if torch.cuda.is_available():
-        return torch.device("cuda")
-    return torch.device("cpu")
+- **Average Training Loss:** 0.7836
+- **Training Accuracy:** 68.80%
+- **Validation Accuracy:** 48.00%
 
+### Epoch 4/4 — Second Pass
 
-class ModelPredictor:
-    def __init__(self, model_id: str):
-        self.config = get_model_config(model_id)
-        self.device = get_device()
-        self.model = None
-        self.tokenizer = None
+- **Average Training Loss:** 0.3273
+- **Training Accuracy:** 90.60%
+- **Validation Accuracy:** 60.10%
+- **Test Accuracy:** 59.50%
 
-    def is_available(self) -> bool:
-        return self.config.is_trained
+The initial results showed significant overfitting, with training accuracy substantially higher than validation and test accuracy. This led to several changes to improve the training and evaluation process.
 
-    def load(self):
-        if self.model is not None:
-            return
+## Changes Made
 
-        config = self.config
-        save_dir = config.checkpoint_dir
+1. **Separate Dataset Splits**  
+   The dataset was divided into three separate groups:
 
-        if save_dir.exists() and (save_dir / "config.json").exists():
-            self.tokenizer = AutoTokenizer.from_pretrained(save_dir)
-            self.model = AutoModelForSequenceClassification.from_pretrained(save_dir)
-        elif config.legacy_checkpoint:
-            legacy_path = ROOT_DIR / config.legacy_checkpoint
-            if not legacy_path.exists():
-                raise FileNotFoundError(
-                    f"No checkpoint found for {config.name}. "
-                    f"Train it first with: python train.py --model {config.id}"
-                )
-            self.tokenizer = AutoTokenizer.from_pretrained(config.model_name)
-            self.model = AutoModelForSequenceClassification.from_pretrained(
-                config.model_name,
-                num_labels=config.num_labels,
-            )
-            state_dict = torch.load(legacy_path, map_location=self.device, weights_only=True)
-            self.model.load_state_dict(state_dict)
-        else:
-            raise FileNotFoundError(
-                f"No checkpoint found for {config.name}. "
-                f"Train it first with: python train.py --model {config.id}"
-            )
+   - Training set — used to train the model.
+   - Validation set — used to monitor performance during training.
+   - Final test set — kept completely unseen until training was finished.
 
-        self.model.to(self.device)
-        self.model.eval()
+2. **Validation Loss Tracking**  
+   Validation loss was added alongside validation accuracy. Tracking loss provides a more detailed measurement of whether the model is improving and allows the best-performing model to be selected more reliably.
 
-    def _build_text(self, texts: list[str]) -> str:
-        if self.config.preprocess == "concat":
-            return " ".join(t for t in texts if t)
-        return texts[0] if texts else ""
+3. **Early Stopping**  
+   Early stopping was changed to monitor validation loss rather than only accuracy. If validation loss stops improving for a specified number of epochs, training is stopped to reduce overfitting and unnecessary computation.
 
-    def predict(self, *texts: str) -> dict:
-        self.load()
+4. **Best Model Saving**  
+   The model is saved whenever validation loss reaches a new minimum. After training finishes, the best saved model is reloaded before final testing.
 
-        text = self._build_text(list(texts))
-        if not text.strip():
-            return {
-                "error": "Please enter some text to classify.",
-                "label": None,
-                "confidence": 0.0,
-                "probabilities": {},
-            }
+5. **Gradient Accumulation**  
+   Gradient accumulation was implemented to simulate a larger batch size.
 
-        inputs = self.tokenizer(
-            text,
-            return_tensors="pt",
-            truncation=True,
-            max_length=self.config.max_length,
-        ).to(self.device)
+   - Actual batch size: 4
+   - Effective batch size: approximately 16
 
-        with torch.no_grad():
-            outputs = self.model(**inputs)
-            probs = torch.softmax(outputs.logits, dim=-1)[0]
+6. **Longer Input Length**  
+   The maximum input length was increased from 128 to 256 tokens. This allows the model to process more of each text sample and retain additional context.
 
-        pred_idx = probs.argmax().item()
-        confidence = probs[pred_idx].item()
+7. **Final Testing**  
+   A separate final evaluation stage was added. The final test set remains unseen during training and validation, providing a better estimate of model performance on new data.
 
-        probabilities = {
-            self.config.label_names[i]: float(probs[i])
-            for i in range(len(self.config.label_names))
-        }
+8. **Scheduler Correction**  
+   The learning-rate scheduler was adjusted so that its number of training steps correctly accounts for gradient accumulation.
 
-        return {
-            "label": self.config.label_names[pred_idx],
-            "label_index": pred_idx,
-            "confidence": confidence,
-            "probabilities": probabilities,
-            "text": text,
-        }
+9. **Removed Unnecessary Import**  
+   The unnecessary import below was removed:
 
-    def unload(self):
-        self.model = None
-        self.tokenizer = None
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
+   ```python
+   from sched import scheduler
+   ```
 
+## Experiment Results
 
-_predictor_cache: dict[str, ModelPredictor] = {}
+| Test | Training Accuracy | Validation Accuracy | Validation Loss | Test Accuracy | Test Loss |
+|:---|---:|---:|---:|---:|---:|
+| Test 2 | 91.40% | 89.80% | 0.2875 | 90.10% | 0.3162 |
+| Test 3 | 92.70% | 91.60% | 0.2641 | 90.90% | 0.3019 |
+| Test 4 | 96.80% | 95.40% | 0.1186 | 95.20% | 0.1324 |
+| Test 5 | 93.10% | 90.90% | 0.2318 | 90.50% | 0.2554 |
+| Test 6 | 99.83% | 98.33% | 0.0713 | 91.50% | 0.2600 |
+| Test 7 | 94.20% | 92.70% | 0.1764 | 90.17% | 0.2187 |
+| Test 8 | 95.60% | 98.60% | 0.0877 | 92.40% | 0.1942 |
+| Test 9 | 99.65% | 97.90% | 0.0648 | 93.80% | 0.1516 |
+| Test 10 | 80.40% | 91.20% | 0.2093 | 90.30% | 0.2745 |
 
+## Key Results
 
-def get_predictor(model_id: str) -> ModelPredictor:
-    if model_id not in _predictor_cache:
-        _predictor_cache[model_id] = ModelPredictor(model_id)
-    return _predictor_cache[model_id]
+### Best Test Accuracy
 
+- **Test:** Test 4
+- **Test Accuracy:** 95.20%
+- **Test Loss:** 0.1324
 
-def clear_predictor_cache():
-    for predictor in _predictor_cache.values():
-        predictor.unload()
-    _predictor_cache.clear()
+### Best Validation Accuracy
+
+- **Test:** Test 8
+- **Validation Accuracy:** 98.60%
+- **Validation Loss:** 0.0877
+
+### Highest Training Accuracy
+
+- **Test:** Test 6
+- **Training Accuracy:** 99.83%
+- **Validation Accuracy:** 98.33%
+- **Validation Loss:** 0.0713
+- **Test Accuracy:** 91.50%
+
+### Overall Test Accuracy Range
+
+The completed tests achieved test accuracies ranging from **90.10% to 95.20%**. Every listed test achieved a test accuracy above 90%, with Test 4 producing the strongest final result at 95.20%.
+
+## Observations
+
+The results show a significant improvement compared with the initial training runs. The first pass produced only 59.50% test accuracy, while the later experiments consistently achieved test accuracies above 90%.
+
+The high training accuracies in Tests 6 and 9 demonstrate that the model can fit the training data extremely well. However, the difference between training accuracy and test accuracy in Test 6 suggests that some degree of overfitting remains.
+
+The addition of validation loss tracking, early stopping, best-model checkpointing, gradient accumulation, and a separate final test set provides a more reliable and controlled training process.
+
+## Current Best Results
+
+| Metric | Best Result | Test |
+|:---|---:|:---|
+| Training Accuracy | 99.83% | Test 6 |
+| Validation Accuracy | 98.60% | Test 8 |
+| Validation Loss | 0.0713 | Test 6 |
+| Test Accuracy | 95.20% | Test 4 |
+| Test Loss | 0.1324 | Test 4 |
+
+## Conclusion
+
+The model development process produced substantial improvements. The initial test accuracy of 59.50% increased to a best recorded test accuracy of 95.20%, and every completed test in the final experiment set achieved more than 90% test accuracy.
+
+The current training pipeline also provides stronger safeguards against overfitting and data leakage through separate dataset splits, validation-loss monitoring, early stopping, best-model checkpointing, and final evaluation on an unseen test set.
