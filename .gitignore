@@ -1,7 +1,14 @@
-best_bert_yelp.pt
-models/
-trial_results/
-__pycache__/
+# Python
 .venv/
-.venv-1/
+__pycache__/
+*.pyc
 
+# ML model files
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Datasets
+datasets/
+best_bert_emotion.pt

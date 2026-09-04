@@ -1,0 +1,151 @@
+[12:37:14] TrainLLM — Full Trial Run
+[12:37:14] Models: 10
+[12:37:14] 
+============================================================
+[12:37:14] TRIAL: Yelp 5-Star Rating (yelp_5star)
+[12:37:14] ============================================================
+[12:37:14]   Skipping training (already trained)
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2393.41it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.bias                       | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+classifier.bias                            | MISSING    | 
+classifier.weight                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[12:37:33]   Inference OK — Yelp 5-Star Rating: 5 Stars (73.7%)
+[12:37:33]   Duration: 19.2s
+[12:37:33] 
+============================================================
+[12:37:33] TRIAL: SMS Spam Detection (sms_spam)
+[12:37:33] ============================================================
+[12:37:33]   Starting training...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Training: SMS Spam Detection
+Device: mps
+Dataset sizes — train: 600, val: 300, test: 200
+Map:   0%|          | 0/600 [00:00<?, ? examples/s]Map: 100%|██████████| 600/600 [00:00<00:00, 2652.97 examples/s]Map: 100%|██████████| 600/600 [00:00<00:00, 2531.06 examples/s]
+Map:   0%|          | 0/300 [00:00<?, ? examples/s]Map: 100%|██████████| 300/300 [00:00<00:00, 8083.38 examples/s]
+Map:   0%|          | 0/200 [00:00<?, ? examples/s]Map: 100%|██████████| 200/200 [00:00<00:00, 3434.72 examples/s]
+Loading weights:   0%|          | 0/100 [00:00<?, ?it/s]Loading weights: 100%|██████████| 100/100 [00:00<00:00, 4610.19it/s]
+[transformers] [1mDistilBertForSequenceClassification LOAD REPORT[0m from: distilbert-base-uncased
+Key                     | Status     | 
+------------------------+------------+-
+vocab_layer_norm.bias   | UNEXPECTED | 
+vocab_layer_norm.weight | UNEXPECTED | 
+vocab_transform.bias    | UNEXPECTED | 
+vocab_transform.weight  | UNEXPECTED | 
+vocab_projector.bias    | UNEXPECTED | 
+classifier.bias         | MISSING    | 
+pre_classifier.weight   | MISSING    | 
+classifier.weight       | MISSING    | 
+pre_classifier.bias     | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+
+============================================================
+Epoch 1/4
+============================================================
+  Batch 10/19 — loss: 0.2983
+Train — loss: 0.3706, accuracy: 89.67%
+Val   — loss: 0.0854, accuracy: 98.67%
+  ✓ Validation improved — saving best checkpoint
+
+============================================================
+Epoch 2/4
+============================================================
+  Batch 10/19 — loss: 0.1093
+Train — loss: 0.0762, accuracy: 97.67%
+Val   — loss: 0.0369, accuracy: 99.33%
+  ✓ Validation improved — saving best checkpoint
+
+============================================================
+Epoch 3/4
+============================================================
+  Batch 10/19 — loss: 0.0242
+Train — loss: 0.0261, accuracy: 99.50%
+Val   — loss: 0.0374, accuracy: 99.00%
+  No improvement (1/2)
+
+============================================================
+Epoch 4/4
+============================================================
+  Batch 10/19 — loss: 0.0067
+Train — loss: 0.0167, accuracy: 99.67%
+Val   — loss: 0.0391, accuracy: 99.00%
+  No improvement (2/2)
+
+Early stopping triggered.
+
+Test — loss: 0.0602, accuracy: 98.50%
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.47s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.47s/it]
+
+Model saved to /Users/sivachandra/trainllm/models/sms_spam
+Training complete!
+[12:44:20]   Training OK — test accuracy: 98.5%
+Loading weights:   0%|          | 0/104 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 40/104 [00:00<00:00, 390.73it/s]Loading weights: 100%|██████████| 104/104 [00:00<00:00, 664.93it/s]
+[12:44:26]   Inference OK — SMS Spam Detection: Spam (57.9%)
+[12:44:26]   Duration: 412.9s
+[12:44:26]   Model already trained at /Users/sivachandra/trainllm/models/imdb
+[12:44:26] 
+============================================================
+[12:44:26] TRIAL: IMDB Sentiment (imdb)
+[12:44:26] ============================================================
+[12:44:26]   Skipping training (already trained)
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 3387.55it/s]
+[12:44:28]   Inference OK — IMDB Sentiment: Positive (52.4%)
+[12:44:28]   Duration: 1.3s
+[12:44:28]   Model already trained at /Users/sivachandra/trainllm/models/emotion
+[12:44:28] 
+============================================================
+[12:44:28] TRIAL: Emotion Classification (emotion)
+[12:44:28] ============================================================
+[12:44:28]   Skipping training (already trained)
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 4788.13it/s]
+[12:44:29]   Inference OK — Emotion Classification: Joy (75.9%)
+[12:44:29]   Duration: 1.1s
+[12:44:29]   Model already trained at /Users/sivachandra/trainllm/models/sst2
+[12:44:29] 
+============================================================
+[12:44:29] TRIAL: SST-2 Sentiment (sst2)
+[12:44:29] ============================================================
+[12:44:29]   Skipping training (already trained)
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 5236.66it/s]
+[12:44:30]   Inference OK — SST-2 Sentiment: Positive (98.0%)
+[12:44:30]   Duration: 1.7s
+[12:44:30] 
+============================================================
+[12:44:30] TRIAL: Amazon Polarity (amazon_polarity)
+[12:44:30] ============================================================
+[12:44:30]   Starting training...
+Training: Amazon Polarity
+Device: mps
+Dataset sizes — train: 1500, val: 1000, test: 500
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 5271.21it/s]
+[transformers] [1mRobertaForSequenceClassification LOAD REPORT[0m from: roberta-base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.

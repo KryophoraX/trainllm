@@ -1,0 +1,89 @@
+[12:21:02] TrainLLM — Full Trial Run
+[12:21:02] Models: 10
+[12:21:02] 
+============================================================
+[12:21:02] TRIAL: Yelp 5-Star Rating (yelp_5star)
+[12:21:02] ============================================================
+[12:21:02]   Skipping training (already trained)
+[12:21:07]   Inference OK — Yelp 5-Star Rating: 5 Stars (73.7%)
+[12:21:07]   Duration: 5.1s
+[12:21:07] 
+============================================================
+[12:21:07] TRIAL: SMS Spam Detection (sms_spam)
+[12:21:07] ============================================================
+[12:21:07]   Starting training...
+[12:21:07]   FAILED: Invalid HF URI 'hf://datasets/sms_spam@cae486f927c250fe1d4a5b55f11357964ed1646c/.huggingface.yaml'. Repository id must be 'namespace/name', got 'sms_spam'.
+[12:21:07]   Duration: 0.5s
+[12:21:07] 
+============================================================
+[12:21:07] TRIAL: IMDB Sentiment (imdb)
+[12:21:07] ============================================================
+[12:21:07]   Starting training...
+[12:21:08]   FAILED: Invalid HF URI 'hf://datasets/imdb@e6281661ce1c48d982bc483cf8a173c1bbeb5d31/.huggingface.yaml'. Repository id must be 'namespace/name', got 'imdb'.
+[12:21:08]   Duration: 0.2s
+[12:21:08] 
+============================================================
+[12:21:08] TRIAL: Emotion Classification (emotion)
+[12:21:08] ============================================================
+[12:21:08]   Starting training...
+[12:21:16]   FAILED: 'NoneType' object has no attribute 'backward'
+[12:21:16]   Duration: 8.6s
+[12:21:16] 
+============================================================
+[12:21:16] TRIAL: SST-2 Sentiment (sst2)
+[12:21:16] ============================================================
+[12:21:16]   Starting training...
+[12:21:17]   FAILED: Invalid HF URI 'hf://datasets/sst2@8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/.huggingface.yaml'. Repository id must be 'namespace/name', got 'sst2'.
+[12:21:17]   Duration: 0.4s
+[12:21:17] 
+============================================================
+[12:21:17] TRIAL: Amazon Polarity (amazon_polarity)
+[12:21:17] ============================================================
+[12:21:17]   Starting training...
+[12:21:17]   FAILED: Invalid HF URI 'hf://datasets/amazon_polarity@9d9c45c18f8c3cf1b23a3c27917b60cbf28f3289/.huggingface.yaml'. Repository id must be 'namespace/name', got 'amazon_polarity'.
+[12:21:17]   Duration: 0.2s
+[12:21:17] 
+============================================================
+[12:21:17] TRIAL: Yelp Polarity (yelp_polarity)
+[12:21:17] ============================================================
+[12:21:17]   Starting training...
+[12:21:17]   FAILED: Invalid HF URI 'hf://datasets/yelp_review_full@c1f9ee939b7d05667af864ee1cb066393154bf85/.huggingface.yaml'. Repository id must be 'namespace/name', got 'yelp_review_full'.
+[12:21:17]   Duration: 0.2s
+[12:21:17] 
+============================================================
+[12:21:17] TRIAL: AG News Topics (ag_news)
+[12:21:17] ============================================================
+[12:21:17]   Starting training...
+[12:21:17]   FAILED: Invalid HF URI 'hf://datasets/ag_news@eb185aade064a813bc0b7f42de02595523103ca4/.huggingface.yaml'. Repository id must be 'namespace/name', got 'ag_news'.
+[12:21:17]   Duration: 0.3s
+[12:21:17] 
+============================================================
+[12:21:17] TRIAL: Yahoo Answers Topics (yahoo_answers)
+[12:21:17] ============================================================
+[12:21:17]   Starting training...
+[12:21:18]   FAILED: Invalid HF URI 'hf://datasets/yahoo_answers_topics@6652a1e7c94f7260a0bfd0c9092dd48e2d536ea1/.huggingface.yaml'. Repository id must be 'namespace/name', got 'yahoo_answers_topics'.
+[12:21:18]   Duration: 0.3s
+[12:21:18] 
+============================================================
+[12:21:18] TRIAL: DBpedia 14-Class (dbpedia)
+[12:21:18] ============================================================
+[12:21:18]   Starting training...
+[12:21:18]   FAILED: Invalid HF URI 'hf://datasets/dbpedia_14@9abd46cf7fc8b4c64290f26993c540b92aa145ac/.huggingface.yaml'. Repository id must be 'namespace/name', got 'dbpedia_14'.
+[12:21:18]   Duration: 0.3s
+[12:21:18] 
+============================================================
+[12:21:18] SUMMARY: 1/10 passed, 9 failed
+[12:21:18] ============================================================
+[12:21:18]   [PASS] Yelp 5-Star Rating (pre-trained)
+[12:21:18]   [FAIL] SMS Spam Detection
+[12:21:18]   [FAIL] IMDB Sentiment
+[12:21:18]   [FAIL] Emotion Classification
+[12:21:18]   [FAIL] SST-2 Sentiment
+[12:21:18]   [FAIL] Amazon Polarity
+[12:21:18]   [FAIL] Yelp Polarity
+[12:21:18]   [FAIL] AG News Topics
+[12:21:18]   [FAIL] Yahoo Answers Topics
+[12:21:18]   [FAIL] DBpedia 14-Class
+[12:21:18] 
+Results saved to /Users/sivachandra/trainllm/trial_results/latest_results.json
+[12:21:18] Log saved to /Users/sivachandra/trainllm/trial_results/trials_20260830_122102.log

@@ -1,0 +1,6 @@
+{
+  "model_id": "emotion",
+  "test_loss": 0.9658082914352417,
+  "test_accuracy": 0.65,
+  "best_val_loss": 1.0887282678955479
+}

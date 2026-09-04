@@ -1,0 +1,141 @@
+{
+  "run_at": "2026-08-30T12:21:18.431906",
+  "passed": 1,
+  "failed": 9,
+  "total": 10,
+  "trials": [
+    {
+      "model_id": "yelp_5star",
+      "name": "Yelp 5-Star Rating",
+      "started_at": "2026-08-30T12:21:02.313323",
+      "training_skipped": true,
+      "training_ok": true,
+      "inference_ok": true,
+      "metrics": null,
+      "prediction": {
+        "label": "5 Stars",
+        "confidence": 0.7365404367446899
+      },
+      "error": null,
+      "duration_seconds": 5.1,
+      "finished_at": "2026-08-30T12:21:07.441913"
+    },
+    {
+      "model_id": "sms_spam",
+      "name": "SMS Spam Detection",
+      "started_at": "2026-08-30T12:21:07.442041",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/sms_spam@cae486f927c250fe1d4a5b55f11357964ed1646c/.huggingface.yaml'. Repository id must be 'namespace/name', got 'sms_spam'.",
+      "duration_seconds": 0.5,
+      "finished_at": "2026-08-30T12:21:07.901944"
+    },
+    {
+      "model_id": "imdb",
+      "name": "IMDB Sentiment",
+      "started_at": "2026-08-30T12:21:07.902264",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/imdb@e6281661ce1c48d982bc483cf8a173c1bbeb5d31/.huggingface.yaml'. Repository id must be 'namespace/name', got 'imdb'.",
+      "duration_seconds": 0.2,
+      "finished_at": "2026-08-30T12:21:08.142442"
+    },
+    {
+      "model_id": "emotion",
+      "name": "Emotion Classification",
+      "started_at": "2026-08-30T12:21:08.142525",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "'NoneType' object has no attribute 'backward'",
+      "duration_seconds": 8.6,
+      "finished_at": "2026-08-30T12:21:16.763908"
+    },
+    {
+      "model_id": "sst2",
+      "name": "SST-2 Sentiment",
+      "started_at": "2026-08-30T12:21:16.764052",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/sst2@8d51e7e4887a4caaa95b3fbebbf53c0490b58bbb/.huggingface.yaml'. Repository id must be 'namespace/name', got 'sst2'.",
+      "duration_seconds": 0.4,
+      "finished_at": "2026-08-30T12:21:17.126767"
+    },
+    {
+      "model_id": "amazon_polarity",
+      "name": "Amazon Polarity",
+      "started_at": "2026-08-30T12:21:17.126973",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/amazon_polarity@9d9c45c18f8c3cf1b23a3c27917b60cbf28f3289/.huggingface.yaml'. Repository id must be 'namespace/name', got 'amazon_polarity'.",
+      "duration_seconds": 0.2,
+      "finished_at": "2026-08-30T12:21:17.359395"
+    },
+    {
+      "model_id": "yelp_polarity",
+      "name": "Yelp Polarity",
+      "started_at": "2026-08-30T12:21:17.359537",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/yelp_review_full@c1f9ee939b7d05667af864ee1cb066393154bf85/.huggingface.yaml'. Repository id must be 'namespace/name', got 'yelp_review_full'.",
+      "duration_seconds": 0.2,
+      "finished_at": "2026-08-30T12:21:17.582082"
+    },
+    {
+      "model_id": "ag_news",
+      "name": "AG News Topics",
+      "started_at": "2026-08-30T12:21:17.582269",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/ag_news@eb185aade064a813bc0b7f42de02595523103ca4/.huggingface.yaml'. Repository id must be 'namespace/name', got 'ag_news'.",
+      "duration_seconds": 0.3,
+      "finished_at": "2026-08-30T12:21:17.846213"
+    },
+    {
+      "model_id": "yahoo_answers",
+      "name": "Yahoo Answers Topics",
+      "started_at": "2026-08-30T12:21:17.846291",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/yahoo_answers_topics@6652a1e7c94f7260a0bfd0c9092dd48e2d536ea1/.huggingface.yaml'. Repository id must be 'namespace/name', got 'yahoo_answers_topics'.",
+      "duration_seconds": 0.3,
+      "finished_at": "2026-08-30T12:21:18.168034"
+    },
+    {
+      "model_id": "dbpedia",
+      "name": "DBpedia 14-Class",
+      "started_at": "2026-08-30T12:21:18.168196",
+      "training_skipped": false,
+      "training_ok": false,
+      "inference_ok": false,
+      "metrics": null,
+      "prediction": null,
+      "error": "Invalid HF URI 'hf://datasets/dbpedia_14@9abd46cf7fc8b4c64290f26993c540b92aa145ac/.huggingface.yaml'. Repository id must be 'namespace/name', got 'dbpedia_14'.",
+      "duration_seconds": 0.3,
+      "finished_at": "2026-08-30T12:21:18.431632"
+    }
+  ]
+}

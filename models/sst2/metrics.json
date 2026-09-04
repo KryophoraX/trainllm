@@ -1,0 +1,6 @@
+{
+  "model_id": "sst2",
+  "test_loss": 0.3356758525967598,
+  "test_accuracy": 0.86,
+  "best_val_loss": 0.3071441669997416
+}

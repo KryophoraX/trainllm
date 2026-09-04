@@ -1,0 +1,6 @@
+{
+  "model_id": "sms_spam",
+  "test_loss": 0.060224677835191996,
+  "test_accuracy": 0.985,
+  "best_val_loss": 0.036875652708113195
+}

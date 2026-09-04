@@ -1,0 +1,88 @@
+[13:31:34] TrainLLM — Full Trial Run
+[13:31:34] Models: 10
+[13:31:34] 
+============================================================
+[13:31:34] TRIAL: Yelp 5-Star Rating (yelp_5star)
+[13:31:34] ============================================================
+[13:31:34]   Skipping training (already trained)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5893.33it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: bert-base-cased
+Key                                        | Status     | 
+-------------------------------------------+------------+-
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
+cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.predictions.transform.dense.weight     | UNEXPECTED | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
+classifier.bias                            | MISSING    | 
+classifier.weight                          | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[13:31:37]   Inference OK — Yelp 5-Star Rating: 5 Stars (73.7%)
+[13:31:37]   Duration: 3.1s
+[13:31:37]   Model already trained at /Users/sivachandra/trainllm/models/sms_spam
+[13:31:37] 
+============================================================
+[13:31:37] TRIAL: SMS Spam Detection (sms_spam)
+[13:31:37] ============================================================
+[13:31:37]   Skipping training (already trained)
+Loading weights:   0%|          | 0/104 [00:00<?, ?it/s]Loading weights: 100%|██████████| 104/104 [00:00<00:00, 5728.49it/s]
+[13:31:38]   Inference OK — SMS Spam Detection: Spam (57.9%)
+[13:31:38]   Duration: 0.9s
+[13:31:38]   Model already trained at /Users/sivachandra/trainllm/models/imdb
+[13:31:38] 
+============================================================
+[13:31:38] TRIAL: IMDB Sentiment (imdb)
+[13:31:38] ============================================================
+[13:31:38]   Skipping training (already trained)
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 6191.10it/s]
+[13:31:39]   Inference OK — IMDB Sentiment: Positive (52.4%)
+[13:31:39]   Duration: 0.7s
+[13:31:39]   Model already trained at /Users/sivachandra/trainllm/models/emotion
+[13:31:39] 
+============================================================
+[13:31:39] TRIAL: Emotion Classification (emotion)
+[13:31:39] ============================================================
+[13:31:39]   Skipping training (already trained)
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 5607.28it/s]
+[13:31:39]   Inference OK — Emotion Classification: Joy (75.9%)
+[13:31:39]   Duration: 0.8s
+[13:31:39]   Model already trained at /Users/sivachandra/trainllm/models/sst2
+[13:31:39] 
+============================================================
+[13:31:39] TRIAL: SST-2 Sentiment (sst2)
+[13:31:39] ============================================================
+[13:31:39]   Skipping training (already trained)
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 5072.81it/s]
+[13:31:41]   Inference OK — SST-2 Sentiment: Positive (98.0%)
+[13:31:41]   Duration: 1.2s
+[13:31:41] 
+============================================================
+[13:31:41] TRIAL: Amazon Polarity (amazon_polarity)
+[13:31:41] ============================================================
+[13:31:41]   Starting training...
+Training: Amazon Polarity
+Device: mps
+Dataset sizes — train: 1500, val: 1000, test: 500
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 5786.79it/s]
+[transformers] [1mRobertaForSequenceClassification LOAD REPORT[0m from: roberta-base
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.

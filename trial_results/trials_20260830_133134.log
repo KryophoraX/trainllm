@@ -1,0 +1,46 @@
+[13:31:34] TrainLLM — Full Trial Run
+[13:31:34] Models: 10
+[13:31:34] 
+============================================================
+[13:31:34] TRIAL: Yelp 5-Star Rating (yelp_5star)
+[13:31:34] ============================================================
+[13:31:34]   Skipping training (already trained)
+[13:31:37]   Inference OK — Yelp 5-Star Rating: 5 Stars (73.7%)
+[13:31:37]   Duration: 3.1s
+[13:31:37]   Model already trained at /Users/sivachandra/trainllm/models/sms_spam
+[13:31:37] 
+============================================================
+[13:31:37] TRIAL: SMS Spam Detection (sms_spam)
+[13:31:37] ============================================================
+[13:31:37]   Skipping training (already trained)
+[13:31:38]   Inference OK — SMS Spam Detection: Spam (57.9%)
+[13:31:38]   Duration: 0.9s
+[13:31:38]   Model already trained at /Users/sivachandra/trainllm/models/imdb
+[13:31:38] 
+============================================================
+[13:31:38] TRIAL: IMDB Sentiment (imdb)
+[13:31:38] ============================================================
+[13:31:38]   Skipping training (already trained)
+[13:31:39]   Inference OK — IMDB Sentiment: Positive (52.4%)
+[13:31:39]   Duration: 0.7s
+[13:31:39]   Model already trained at /Users/sivachandra/trainllm/models/emotion
+[13:31:39] 
+============================================================
+[13:31:39] TRIAL: Emotion Classification (emotion)
+[13:31:39] ============================================================
+[13:31:39]   Skipping training (already trained)
+[13:31:39]   Inference OK — Emotion Classification: Joy (75.9%)
+[13:31:39]   Duration: 0.8s
+[13:31:39]   Model already trained at /Users/sivachandra/trainllm/models/sst2
+[13:31:39] 
+============================================================
+[13:31:39] TRIAL: SST-2 Sentiment (sst2)
+[13:31:39] ============================================================
+[13:31:39]   Skipping training (already trained)
+[13:31:41]   Inference OK — SST-2 Sentiment: Positive (98.0%)
+[13:31:41]   Duration: 1.2s
+[13:31:41] 
+============================================================
+[13:31:41] TRIAL: Amazon Polarity (amazon_polarity)
+[13:31:41] ============================================================
+[13:31:41]   Starting training...

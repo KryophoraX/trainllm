@@ -1,0 +1,6 @@
+{
+  "model_id": "imdb",
+  "test_loss": 0.5893519334495068,
+  "test_accuracy": 0.752,
+  "best_val_loss": 0.577865172624588
+}
